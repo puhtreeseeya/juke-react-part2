@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Songs from '../components/Songs';
-import AllAlbums from '../components/AllAlbums'; 
+import AllAlbums from '../components/AllAlbums';
 import axios from 'axios';
 
 export default class StatefulAlbums extends Component {
@@ -21,7 +21,7 @@ export default class StatefulAlbums extends Component {
 
   render() {
   	return (
-  		<AllAlbums albums={this.state.albums}/> 
+  		<AllAlbums albums={this.state.albums}/>
   	)
   }
 

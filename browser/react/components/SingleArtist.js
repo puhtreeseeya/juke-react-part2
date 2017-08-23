@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Songs from '../components/Songs';
-import StatefulAlbums from './StatefulAlbums'
+import AllAlbums from './AllAlbums'
 import axios from 'axios';
-import {HashRouter, Link, Switch, Route} from 'react-router-dom';
+import {HashRouter, NavLink, Link, Switch, Route} from 'react-router-dom';
 
 export default class SingleArtist extends Component {
 	constructor(){
@@ -40,33 +40,32 @@ export default class SingleArtist extends Component {
 
 	render() {
     const artist = this.state.selectedArtist; // or however you've named it
-
     return (
       <div>
         <h3>{ artist.name }</h3>
         <ul className="nav nav-tabs">
-          <li><Link to="/albums">ALBUMS</Link></li>
-          <li><Link to="TODO">SONGS</Link></li>
+          <li><NavLink to={`/artists/${artist.id}/albums`} activeClassName='active'>ALBUMS</NavLink></li>
+          <li><NavLink to={`/artists/${artist.id}/songs`}>SONGS</NavLink></li>
         </ul>
 
       <HashRouter>
         <Switch>
           <Route
             exact
-            path='/artist/:artistId/albums'
-            component={StatefulAlbums}
+            path='/artists/:artistId/albums'
+            render={()=> <AllAlbums albums={this.state.artistAlbums} />}
           />
           <Route
             exact
-            path='/'
-            component={Songs}
+            path='/artists/:artistId/songs'
+            render={()=> <Songs songs={this.state.artistSongs} />}
           />
 
 
         </Switch>
       </HashRouter>
       </div>
-    );
+    )
 		// {return (
 		// 	<div>
 		// 	  <h3>{this.state.selectedArtist.name}</h3>

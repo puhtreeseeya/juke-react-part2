@@ -3,9 +3,10 @@ import StatefulAlbums from './StatefulAlbums';
 import SingleAlbum from './SingleAlbum';
 import Sidebar from './Sidebar';
 import Player from './Player';
-import AllArtists from './AllArtists'; 
-import SingleArtist from './SingleArtist'; 
-import {HashRouter, Switch, Route} from 'react-router-dom';
+import AllArtists from './AllArtists';
+import SingleArtist from './SingleArtist';
+import NotFound from './NotFound';
+import {HashRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 export default class Main extends Component {
 
@@ -40,7 +41,7 @@ export default class Main extends Component {
                 exact
                 path='/albums'
                 component={StatefulAlbums}
-                /> 
+                />
               <Route
                 exact
                 path='/albums/:albumId'
@@ -52,9 +53,11 @@ export default class Main extends Component {
                 component={AllArtists}
               />
               <Route
-                exact
                 path='/artists/:artistId'
                 component={SingleArtist}
+              />
+              <Route
+                component={NotFound}
               />
         </div>
       </div>
