@@ -13,6 +13,9 @@ const Sidebar = (props) => {
           <Link to="/albums">
             ALBUMS
           </Link>
+          <Link to="/artists">
+            ARTISTS
+          </Link>
         </h4>
       </section>
     </sidebar>
