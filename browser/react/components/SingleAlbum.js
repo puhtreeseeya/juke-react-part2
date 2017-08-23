@@ -20,7 +20,7 @@ const fakeAlbum = {
 
 export default class SingleAlbum extends Component {
   constructor() {
-    super() 
+    super()
     this.state = {
       selectedAlbum: {}
     }
@@ -33,20 +33,15 @@ export default class SingleAlbum extends Component {
     axios.get(`/api/albums/${albumId}`)
       .then(res => res.data)
       .then(album => {
-        console.log(album); 
         this.setState({
           selectedAlbum: album
         })
-    }); 
+    });
   }
 
-  selectAlbum (albumId) {
-    
-  }
 
   render () {
-
-    const album = this.state.selectAlbum; 
+    const album = this.state.selectedAlbum;
 
     return (
       <div className="album">

@@ -1,42 +1,34 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import AllAlbums from './AllAlbums';
 import SingleAlbum from './SingleAlbum';
 import Sidebar from './Sidebar';
 import Player from './Player';
-import {HashRouter, Route} from 'react-router-dom'; 
+import {HashRouter, Switch, Route} from 'react-router-dom';
 
 export default class Main extends Component {
 
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.state = {
       albums: []
-      
+
     };
-    this.deselectAlbum = this.deselectAlbum.bind(this);
   }
 
-
-
-  deselectAlbum () {
-    this.setState({ selectedAlbum: {}});
-  }
 
   render () {
     return (
       <div id="main" className="container-fluid">
+
+
+    <HashRouter>
+      <div>
         <div className="col-xs-2">
-          <Sidebar deselectAlbum={this.deselectAlbum} />
+          <Sidebar  />
         </div>
-        
-          <HashRouter> 
-            <div className="col-xs-10">
-              <Route
-                exact
-                path='/albums'
-                component={AllAlbums}    
-              />
+      <Switch>
+      <div>
+        <div className="col-xs-10">
               <Route
                 exact
                 path='/'
@@ -44,11 +36,20 @@ export default class Main extends Component {
               />
               <Route
                 exact
+                path='/albums'
+                component={AllAlbums}
+              />
+              <Route
+                exact
                 path='/albums/:albumId'
                 component={SingleAlbum}
               />
-            </div> 
-          </HashRouter> 
+        </div>
+      </div>
+      </Switch>
+      </div>
+    </HashRouter>
+
 
         <Player />
       </div>
